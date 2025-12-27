@@ -1,0 +1,307 @@
+МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ
+
+ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ РАДІОЕЛЕКТРОНІКИ
+
+
+
+
+
+Кафедра програмної інженерії
+
+
+
+ЗВІТ
+з практичної роботи №1
+з дисципліни “Аналіз та рефакторинг коду”
+
+
+
+Виконав: 							Первірив:	
+ст. гр. ПЗПІ-23-4						ст. викл. Кафедри ПІ:
+Кулаков С. М.						Сокорчук І. П.
+
+
+
+
+
+
+Харків, 2025
+　　　　1 ІСТОРІЯ ЗМІН
+Назва	Дата	Причина змін	Версія звіту
+Створення документу	23.12.25	Початкове створення звіту. 	1.0
+Створення і заповнення розділів звіту	23.12.25	Створено розділи “Мета”, “Завдання”, “Опис виконанної роботи”, 	1.1
+Створення і заповнення Додатків до звіту	23.12.25	Створено розділ “Висновки” і “Додатки”	1.2
+
+　　　　2 МЕТА РОБОТИ
+　　　　Ознайомитися з головними рекомендаціями щодо написання чистого коду на мові PHP.
+　　　　3 ЗАВДАННЯ
+　　　　Обрати мову програмування, ознайомитись і дослідити базові рекомендації, щодо написання чистого коду на вибраній мові програмування
+　　　　4 ОПИС ВИКОНАНОЇ РОБОТИ
+　　　　 PHP-FIG (PHP Framework Interop Group) - це група розробників PHP-фреймворків та бібліотек, яка об’єднує провідних представників різних проєктів для вироблення спільних стандартів кодування та кращих практик у PHP. В рамках діяльності PHP-FIG були створені PHP Standarts Recommendations (PSR) - набір офіційних рекомендацій і стандартів кодування, що описують стиль, структуру та поведінку PHP-коду. Кожен PSR охорлює конкретну сферу:
+　　　　- PSR-1 - базові стандарти коду, включно з іменуванням класів, методів та файлів;
+　　　　- PSR-12 - розширення PSR-2, детально визначає стиль оформлення коду: відступи, розташування фігурних дужок, пробліли, довжину рядків та інші аспекти форматування;
+　　　　- PSR-4 - стандарт автозавантаження класів, який визначає, як структура папок і просторів імен співвідноситься з розташуванням файлів.
+　　　　Рекомендація 1: Відступи між рядками виконуються 4 пробілами, відкриваюча фігурна дужка розміщується на новому рядку, ключові слова PHP пишуться у нижньому регістрі.
+# Рекомендовано
+class UserService
+{
+　　public function getWeather():
+　　{
+　　    return ‘Сонячна’;
+　　}
+}
+	Рекомендація 2: Назви змінних, методів та класів повинні бути осмисленними та зрозумілими. Рекомендується також: уникати скорочень без очевидного значення, писати класи у стилі PascalCase, писати назви методів та змінних у стилі camelCase. Назва методу має відображати призначення, а не реалізацію
+# Не рекомендовано
+class usr
+{
+　　public function f($a)
+　　{
+　　    return $a * 1.2;
+　　}
+}
+# Рекомендовано
+class User
+{
+　　public function calculatePriceWithTax(float $price)
+　　{
+　　	return $price * 1.2;
+　　}
+} 
+	Рекомендація 3: Код повинен бути логічно структурований, бажано використовувати простори імен, структура папок повинна відповідати простору імен, для автозавантаження класів застосовувати стандарт PSR-4.
+# Рекомендовано
+namespace App\Services;
+
+class AdvertService
+{
+    public function getAllAdverts(): array
+    {
+        return [];
+    }
+}
+# Рекомендована структура папок проекту
+src/
+　Controllers/
+　　AdvertController.php
+Models/
+　Advert.php
+Services/
+  AdvertService.php
+	Рекомендація 4: Дотримання парадигм програмування (ООП). PHP підтримує об’єктно-орієнтовану парадигму програмування, перкомендується використовувати: класи та об’єкти, інкапсуляцію, інтерфейси. Логіка програми має бути розподілена між класами.
+# Не рекомендовано
+function getUserDiscount($age)
+{
+　　if ($age > 60){
+　　	return 0.3;
+　　}
+　　return 0.1;
+}
+# Рекомендовано
+interface DiscountPolicy
+{
+　　public function calculate(int $age): float;
+}
+
+class UserDiscountPolicy implements DiscountPolicy
+{
+    public function calculate(int $age): float
+    {
+        return $age > 60 ? 0.3 : 0.1;
+    }
+}
+	Рекомендація 5: Принципи DRY, SRP. DRY(Don`t Repeat Yourself) - уникаємо дублювання коду. SRP(Single Responsibility Principle) - кожен клас або метод має виконувати лише одну відповідальність.
+# Не рекомендовано
+function calculateAdvertPrice($advert)
+{
+	$total = $advert[‘base_price’] * $advert[‘duration_days’];
+　　　　if ($advert[‘user’][‘is_regular’])
+　　　　{
+　　　　$total *= 0.9;
+	}
+	echo “TOtal price: $total”;
+}
+# Рекомендовано
+class DiscountCalculator
+{
+    public function calculate(array $user, float $total): float
+    {
+        return $user['is_regular'] ? $total * 0.9 : $total;
+    }
+}
+
+class AdvertService
+{
+    private DiscountCalculator $discountCalculator;
+
+    public function __construct(DiscountCalculator $discountCalculator)
+    {
+        $this->discountCalculator = $discountCalculator;
+    }
+
+    public function calculateTotal(array $advert): float
+    {
+        $total = $advert['base_price'] * $advert['duration_days'];
+        return $this->discountCalculator->calculate($advert['user'], $total);
+    }
+}
+　　　　Рекомендація 6: Оптимізація продуктивності коду. Рекомендується використовувати типізацію параметрів і повертаних значень, уникати зайвих обчислень у циклах, кешувати часто використовувані дані, використовувати масиви і об’єкти ефективно.
+# Не рекомендовано
+function calculateTotalPriceForAdverts(array $adverts)
+{
+	$totals = [];
+	foreach ($adverts as $advert){
+		$totals[] = $advert[‘base_price’] * $advert[‘duration’]
+　　　　}
+　　　　return $totals;
+}
+#Рекомендовано
+class AdvertService
+{
+    public function calculateTotalPrice(array $adverts): array
+    {
+        $totals = [];
+
+        foreach ($adverts as $advert) {
+            $totals[] = $this->calculateSingleAdvert($advert);
+        }
+
+        return $totals;
+    }
+    private function calculateSingleAdvert(array $advert): float
+    {
+        return (float) ($advert['base_price'] * $advert['duration_days']);
+    }
+}
+	Рекомендація 7 - Обробка помилок у PHP. Рекомендується використовувати винятки (Exceptions) для обробки помилок, не приховувати помилка - завжди логувати або повідомляти користувача, використовувати try/catch для безпечного виконання коду
+# Не рекомендовано
+function getAdvertById($id)
+{
+    $advert = findAdvert($id);
+    return $advert['price'];
+}
+# Рекомендовано
+class AdvertNotFoundException extends Exception {}
+
+function getAdvertById(int $id): float
+{
+    $advert = findAdvert($id);
+
+    if ($advert === null) {
+        throw new AdvertNotFoundException("Advert with ID $id not found");
+    }
+    return (float) $advert['price'];
+}
+// Використання
+try {
+    $price = getAdvertById(5);
+} catch (AdvertNotFoundException $e) {
+    echo $e->getMessage();
+}
+	Рекомендація 8: Single Responsibility Priciple (SRP) - Принцип Єдиної Відповідальності. Кожен клас має виконувати тільки одну відповідальність
+# Не рекомендовано
+class AdvertManager
+{
+    public function calculatePrice(array $advert)
+    {
+        return $advert['base_price'] * $advert['duration_days'];
+    }
+    public function saveAdvertToDatabase(array $advert)
+    {
+        // код для збереження в базу
+    }
+}
+# Рекомендовано
+class AdvertService
+{
+    public function calculateTotal(array $advert): float
+    {
+        return $advert['base_price'] * $advert['duration_days'];
+    }
+}
+class AdvertRepository
+{
+    public function save(array $advert): void
+    {
+        // код для збереження в базу
+    }
+}
+	4 ВИСНОВКИ 
+	У ході виконання приктичної роботи було розглянуто і досліджено основні правила оформлення програмного коду мови PHP, що базуються на стандартах PSR та принципах об’єктно-орієнтованого програмування.
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК А
+Відеозапис
+Посилання на відеозапис: https://youtu.be/9Bmwob9PMQc
+Хронологічния опис відеозапису:
+00:00 Вітання 
+00:12 Мова програмування PHP та необхідність стандартів коду 00:53 Офіційні стандарти оформлення коду PHP 
+01:31 Стильові рекомендації оформлення коду 
+02:07 Правила найменування змінних, функцій та класів 
+03:15 Структура коду та файлів 
+04:12 Дотримання парадигм програмування 
+05:03 Принципи DRY, SRP 
+06:09 Оптимізація продуктивності коду у PHP 
+07:08 Обробка помилок у PHP 
+08:03 Принцип гарного коду Single Responsibility Principle 
+09:01 Дякую за увагу
+	
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК Б
+Графічні матеріали презентації
+Рисунок Б.1 Слайд 1 - Тема презентації:
+
+
+Рисунок Б.2 Слайд 2 - Мова програмування PHP та необхідність стандартів коду  
+
+
+Рисунок Б.3 Слайд 3 - Офіційні стандарти оформлення коду PHP 
+
+
+Рисунок Б.4 Слайд 4 - Стильові рекомендації оформлення коду 
+
+
+Рисунок Б.5 Слайд 5 -  Правила найменування змінних, функцій та класів 
+
+
+Рисунок Б.6 Слайд 6 - Структура коду та файлів
+
+
+Рисунок Б.7 Слайд 7 - Дотримання парадигм програмування 
+
+
+Рисунок Б.8 - Слайд 8 Принципи DRY, SRP 
+
+
+Рисунок Б.9 - Слайд 9 Оптимізація продуктивності коду у PHP
+
+
+Рисунок Б.10 - Слайд 10 Обробка помилок у PHP
+
+
+Рисунок Б.11 - Слайд 11 Принцип гарного коду Single Responsibility Principle 
+
+
+Рисунок Б.12 - Слайд 12 Дякую за увагу
+
+
+
