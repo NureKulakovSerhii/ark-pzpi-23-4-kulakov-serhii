@@ -1,0 +1,441 @@
+МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ
+
+ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ УНІВЕРСИТЕТ РАДІОЕЛЕКТРОНІКИ
+
+
+
+
+
+Кафедра програмної інженерії
+
+
+
+ЗВІТ
+з практичної роботи №2
+з дисципліни “Аналіз та рефакторинг коду”
+
+
+
+Виконав: 							Первірив:	
+ст. гр. ПЗПІ-23-4						ст. викл. Кафедри ПІ:
+Кулаков С. М.						Сокорчук І. П.
+
+
+
+
+
+
+Харків, 2025
+　　　　1 ІСТОРІЯ ЗМІН
+Назва	Дата	Причина змін	Версія звіту
+Створення документу	23.12.25	Початкове створення звіту. 	1.0
+Створення і заповнення розділів звіту	23.12.25	Створено розділи , “Завдання”, “Опис виконанної роботи”, 	1.1
+Створення і заповнення Додатків до звіту	23.12.25	Створено розділ “Висновки” і “Додатки”, “Опис використаниї джерел”	1.2
+
+	
+　　　　2 ЗАВДАННЯ
+	Обрати три методи рефакторингу коду з із книги Мартіна Флауера і навести приклади рефакторингу власного коду (з лабораторних, курсових або інших робіт/проектів).
+
+	3 ОПИС ВИКОНАНОЇ РОБОТИ
+	Рефакторинг - це процес покрокових змін у структурі коді без зміни його зовнішнтої поведінки, з метою зробити код більш чистим, зрозумілим і легким для підтримки. Основні цілі рефакторингу:
+	- покращення читабельності коду - код має бути легким для розуміння іншими розробниками і самим автором через деякий час після написання ділянки коду;
+	- зменшення дублювання коду - повторюваний код винести у окремі функції або методи;
+	- полегшення підтримки та розширення коду - після рефакторингу додавання нових функціональностей або виправлення помилок стає простішим і менш ризикованим;
+	- підвищення якості коду - зменшується ймовірність помилок, покращується структура і логіка програми.
+	Для рефакторингу PHP коду була обрана Лабораторна робота №2 з дисципліни “Скриптові мови програмування” за другий  курс навчання. Методи рефакторингу: Extract Method, Rename Method, Replace Conditional With Polymorphism.
+	Extract Method (Виділення методу) - це прийом, що полягає у винесенні логічно цілісної частини коду в окремий новий метод, який отримує зрозумілу назву, що описує його функцію, а в початковому місці залишається лише виклик нового методу.
+	Проблема: у коді зустрічалися повторювані блоки логіки, наприклад, підрахунок пробілів для вирівнювання виводу товарів у консолі. Код був дубльований у кількох місцях, що ускладньовало підтримку.
+	Код до рефакторингу:
+function showProducts($products) 
+{
+	$max_length = 0; 
+	foreach ($products as $product) 
+	{
+		$length = mb_strlen($product['name']); 
+		if ($length > $max_length) 
+		{
+			$max_length = $length; 
+		} 
+	} 
+	$spaces = ''; 
+	for ($i = 0; $i < 15; $i++)
+	{
+		$spaces .= ' '; 
+	} echo "№ НАЗВА" . $spaces . " ЦІНА\n"; 
+	foreach ($products as $product) 
+	{ 
+		$spaces = ''; 
+		for($i = 0; $i < $max_length - mb_strlen($product['name']) + 2; $i++) 
+		{ 
+			$spaces .= ' '; 
+		} 
+		echo $product['id'] . " " . $product['name'] . $spaces . $product['price'] . "\n"; } 
+		echo " " . str_repeat("-", 11) . "\n"; echo "0 ПОВЕРНУТИСЯ\n"; 
+	}
+}
+　　　　Вирішення проблеми: було створено окремий метод repeatSpaces($count), який відповідає лише за підрахунок і повернення рядка пробілів. Це дозволило:
+　　　　- позбутися дублювання коду;
+　　　　- підвищити читабельність і структурованність коду;
+　　　　- полегшити тестування логіки підрахунку пробілів.
+	Код після рефакторингу
+// Новий метод
+function repeatSpaces($count) {
+    $spaces = '';
+    for ($i = 0; $i < $count; $i++) {
+        $spaces .= ' ';
+    }
+    return $spaces;
+}
+// Виклик новостворенного методу замість обчислення пробілів для кожної ситуації окремо
+function showProducts($products) {
+    $max_length = 0;
+    foreach ($products as $product) {
+        $length = mb_strlen($product['name']);
+        if ($length > $max_length) {
+            $max_length = $length;
+        }
+    }
+    $spaces = '';
+    for ($i = 0; $i < 15; $i++){
+        $spaces .= ' ';
+    }
+    echo "№  НАЗВА" . repeatSpaces(15) . "  ЦІНА\n";
+    
+    foreach ($products as $product) {
+        $spaces = repeatSpaces($max_length - mb_strlen($product['name']) + 2);
+        echo $product['id'] . "  " . $product['name'] . $spaces . $product['price'] . "\n";
+    }
+    echo "   " . str_repeat("-", 11) . "\n";
+    echo "0  ПОВЕРНУТИСЯ\n";
+}
+	Rename Method (Метод Перейменування) - це прийом, що покращує читабельність коду шляхом зміни імені методу таким чином, щоб воно максимально точно відображало його призначення, при цьому не змінюючи його функціональність.
+	Проблема: під час аналізу коду  консольного застосунку після тривалої перерви було виявлено метод із неінформативною назвою “add”, яка не відображала його реального призначення. Назва методу була занадто загальною та змушувала переглядати реалізацію та витрачати час, щоб зрозуміти, яку саму дію цей метод виконує.
+	Код до рефакторингу:
+function add(&$user, $product, $quantity) {
+    if ($quantity === 0) {
+        foreach ($user['cart'] as $key => $item) {
+            if ($item['product']['id'] === $product['id']) {
+                unset($user['cart'][$key]);
+                $user['cart'] = array_values($user['cart']);
+                return;
+            }
+        }
+        return;
+    }
+    foreach ($user['cart'] as &$item) {
+        if ($item['product']['id'] === $product['id']) {
+            $item['quantity'] += $quantity;
+            return;
+        }
+    }
+    
+    $user['cart'][] = [
+        'product' => $product,
+        'quantity' => $quantity
+    ];
+}
+	Вирішення проблеми: як можна побачити, представлений метод працює з товарами, і виконує різний функціонал в залежності від вхідних параметрів. Якщо в кошику користувача немає заданого товару, при виклику методу товар буде додано у заданій користувачем кількості. Якщо товар вже є у кошику - кількість цього товару збільшиться. Якщо ж користувач вкаже параметр “quantity” дорівнює 0 - товар видалитсья з кошику. Тож, ім’я методу невірно трактує його функціонал і доречним буде перейменувати метод в “manageCartItem”, для уникання плутанини у інших розробників, а також у автора коду після спливу часу.
+	Код після рефакторингу:
+function manageCartItem(&$user, $product, $quantity) {
+    if ($quantity === 0) {
+        foreach ($user['cart'] as $key => $item) {
+            if ($item['product']['id'] === $product['id']) {
+                unset($user['cart'][$key]);
+                $user['cart'] = array_values($user['cart']);
+                return;
+            }
+        }
+        return;
+    }
+    foreach ($user['cart'] as &$item) {
+        if ($item['product']['id'] === $product['id']) {
+            $item['quantity'] += $quantity;
+            return;
+        }
+    }
+    
+    $user['cart'][] = [
+        'product' => $product,
+        'quantity' => $quantity
+    ];
+}
+	Replace Conditional With Polymorphism (Заміна умовного оператора поліморфізмом) - це прийом, який полягає у заміні складних умовних конструкцій (if/else або switch) на використання поліморфізму, коли різна поведінка програми інкапсулюється у окремі класи. Такий підхід покращує читабельність коду, спрощує його розширення та зменшує залежність від умовних операторів.
+	Проблема: У початковій реалізації консольного застосунку обробка дій користувача реалізована за допомогою великої конструкції switch, яка аналізує введену команду ($input) і виконує відповідну логіку. Кожна гілка case містить власний, досить об’ємний код:
+	- завершення програми (case “0”),
+	- робота з товарами та кошиком (case “1”),
+	- перегляд кошика (case “2”),
+	- робота з профілем користувача (case “3”).
+	Код до рефакторингу: (ДОДАТОК В.1)
+	Вирішення проблеми: для усунення залежності від оператора switch було використано прийом Replace Conditional With Polymorphism. Суть рішення полягає у тому, що кожна команда користувача була винесена в окремий клас, який інкапсулює власну логіку виконання. Для цього було створено спільний інтерфейс Command з методом execute(), який кожна конкретна команда реалізує у власному класі, відповідальному лише за свою поведінку. Замість громіздкої конструкції switch використовується асоціативний масив команд, де ключем є введене користувачем значення, а значенням - відповідний об’єкт команди. Після цього виконання потрібної дії зводитсья до виклику методу execute() у відповідного об’єкта. Такий підхід дозволив:
+	- позбутися великої умовної конструкції;
+	- чітко роздалити відповідальність між окремими класами;
+	- спростити читабельність основного циклу програми;
+	- полегшити розширення функціоналу, оскільки додавання нової команди не потребує модифікації існуючої логіки, а лише створення нового класу.
+	Код після рефакторингу: (ДОДАТОК В.2)
+
+	4 ВИСНОВКИ
+	У ході виконання другої практичної роботи було продемонстровано застосування трьох методів рефакторингу на прикладі консольного застосунку, реалізованого на мові PHP. Отримані результати підтверджують, що рефакторинг є важливим інструментом підвищення якості програмного коду.
+
+	5 ВИКОРИСТАНІ ДЖЕРЕЛА
+1.Martin, R. C. Clean Code: A Handbook of Agile Software Craftmanship,  2008
+
+
+
+
+
+
+
+ДОДАТОК А
+Відеозапис презентації на YouTube: https://youtu.be/CieC8rCvTVY
+Хронологічний опис відеозапису:
+00:00 Вітання 
+00:17 Що таке рефакторинг 
+01:13 Опис методу рефакторингу Extract Method 
+01:39 Приклад коду до використання Extract Method 
+02:07 Код після рефакторингу коду Extract Method 
+02:31 Опис методу рефакторингу Rename Method 
+02:58 Приклад коду до рефакторингу Rename Method 
+03:43 Код після рефакторингу Rename Method 
+04:15 Опис методу рефакторингу Replace Conditional with Polymorphism 
+05:04 Приклад коду до рефакторингу Replace Conditional with Polymorphism 
+05:48 Код після рефакторингу Replace Conditional with Polymorphism 06:12 Підсумок 
+06:54 Дякую за увагу
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК Б
+Графічні матеріали з презентації:
+Рисунок Б.1  Слайд 1 - Тема презентації
+
+
+Рисунок Б.2 Слайд 2 - Що таке рефакторинг
+
+
+
+Рисунок Б.3 Слайд 3 - Опис методу рефакторингу Extract Method
+
+
+Рисунок Б.4 Слайд 4 - Приклад коду до використання Extract Method 
+
+
+Рисунок Б.5 Слайд 5 - Код після рефакторингу коду Extract Method 
+
+
+Рисунок Б.6 Слайд 6 - Опис методу рефакторингу Rename Method 
+
+
+Рисунок Б.7 Слайд 7 - Приклад коду до рефакторингу Rename Method 
+
+
+Рисунок Б.8 Слайд 8 - Код після рефакторингу Rename Method 
+
+
+Рисунок Б.9 Слайд 9 - Опис методу рефакторингу Replace Conditional with Polymorphism 
+
+
+Рисунок Б.10 Слайд 10 - Приклад коду до рефакторингу Replace Conditional with Polymorphism 
+
+
+Рисунок Б.11 Слайд 11 - Код після рефакторингу Replace Conditional with Polymorphism
+
+
+Рисунок Б.12 Слайд 12 - Підсумок 
+
+
+Рисунок Б.13 Слайд 13 - Дякую за увагу
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК В
+В.1 Replace Conditional with Polymorphism. Програмний код до рефакторингу:
+switch ($input) {
+        case "0":
+            exit;
+        case "1":
+            while (true) {
+                showProducts($products);
+                echo "Виберіть товар ";
+                $user_choice = trim(fgets(STDIN));
+                if ($user_choice == 0) {
+                    break;
+                }
+                
+                $product = null;
+                foreach ($products as $p) {
+                    if ($user_choice == $p['id']) {
+                        $product = $p;
+                        break;
+                    } 
+                }
+                
+                if (!$product) {
+                    echo "ПОМИЛКА! ВКАЗАНО НЕПРАВИЛЬНИЙ НОМЕР ТОВАРУ!\n";
+                    continue;
+                }
+                
+                echo "Вибрано: {$product['name']}\n";
+                echo "Введіть кількість, штук: ";
+                $quantity = (int)fgets(STDIN);
+                
+                if ($quantity === 0) {
+                    $found = false;
+                    foreach ($user['cart'] as $item) {
+                        if ($item['product']['id'] === $product['id']) {
+                            $found = true;
+                            break;
+                        }
+                    }
+                    
+                    if ($found) {
+                        echo "ВИДАЛЯЮ З КОШИКА\n";
+                        manageCartItem($user, $product, 0);
+                    } else {
+                        echo "Товар ще не був доданий у кошик!\n";
+                    }
+                } else if ($quantity < 0 || $quantity > 100) {
+                    echo "ПОМИЛКА! Кількість має бути від 1 до 100\n";
+                    continue;
+                } else {
+                    manageCartItem($user, $product, $quantity);
+                }
+                
+                echo "\n";
+                
+                if (empty($user['cart'])) {
+                    echo "КОШИК ПОРОЖНІЙ!\n\n";
+                } else {
+                    $max_length = 0;
+                    foreach ($products as $product) {
+                        $length = mb_strlen($product['name']);
+                        if ($length > $max_length) {
+                            $max_length = $length;
+                        }
+                    }
+                    
+                    echo "У КОШИКУ:\n";
+                    echo "НАЗВА" . str_repeat(" ", $max_length - mb_strlen("НАЗВА") + 2) . "КІЛЬКІСТЬ\n";
+                    
+                    foreach ($user['cart'] as $item) {
+                        $name = $item['product']['name'];
+                        $qty = $item['quantity'];
+                        echo $name . str_repeat(" ", $max_length - mb_strlen($name) + 2) . $qty . "\n";
+                    }
+                    echo "\n";
+                }
+            }
+            break;
+        case "2":
+            showCart($user['cart']);
+            break;
+        case "3":
+            do {
+                echo "Ваше ім'я: ";
+                $name = trim(fgets(STDIN)); 
+            } while (!setUserName($user, $name));
+            
+            do {
+                echo "Ваш вік: ";
+                $age = (int)trim(fgets(STDIN)); 
+            } while (!setUserAge($user, $age));
+            
+            echo "\n";
+            echo "Ваше ім'я: " . $user['name'] . "\n";
+            echo "Ваш вік: " . $user['age'] . "\n";
+            echo "\n";
+            break;
+        default:
+            echo "ПОМИЛКА! Введіть правильну команду\n";
+　　}
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+　　
+
+В.2 Програмний код після рефакторингу:
+interface Command {
+    public function execute();
+}
+class ExitCommand implements Command {
+    public function execute() {
+        exit;
+    }
+}
+class ShowProductsCommand implements Command {
+    private array $products;
+
+    public function __construct(array $products) {
+        $this->products = $products;
+    }
+
+    public function execute() {
+        showProducts($this->products);
+    }
+}
+class ShowCartCommand implements Command {
+    private array $cart;
+
+    public function __construct(array $cart) {
+        $this->cart = $cart;
+    }
+
+    public function execute() {
+        showCart($this->cart);
+    }
+}
+class ProfileCommand implements Command {
+    private array &$user;
+
+    public function __construct(array &$user) {
+        $this->user = &$user;
+    }
+
+    public function execute() {
+        setUserProfile($this->user);
+    }
+}
+$commands = [
+    "0" => new ExitCommand(),
+    "1" => new ShowProductsCommand($products),
+    "2" => new ShowCartCommand($user['cart']),
+    "3" => new ProfileCommand($user),
+];
+
+$input = trim(fgets(STDIN));
+
+if (isset($commands[$input])) {
+    $commands[$input]->execute();
+} else {
+    echo "ПОМИЛКА! Введіть правильну команду\n";
+}
