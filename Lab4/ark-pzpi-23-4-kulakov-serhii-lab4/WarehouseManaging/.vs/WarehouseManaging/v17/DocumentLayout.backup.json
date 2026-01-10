@@ -1,0 +1,239 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0E186D30-BD2C-4104-A258-6E25E02F1673}|Domain\\Domain.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\domain\\models\\devicetelemetry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E186D30-BD2C-4104-A258-6E25E02F1673}|Domain\\Domain.csproj|solutionrelative:domain\\models\\devicetelemetry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E186D30-BD2C-4104-A258-6E25E02F1673}|Domain\\Domain.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\domain\\models\\warehousedevice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E186D30-BD2C-4104-A258-6E25E02F1673}|Domain\\Domain.csproj|solutionrelative:domain\\models\\warehousedevice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\controllers\\usertelemetrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\controllers\\usertelemetrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\controllers\\iotdevicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\controllers\\iotdevicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E4DF1ED-B042-4B07-8B8F-1CB57176CBAB}|Services\\Services.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\services\\services\\iotdeviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E4DF1ED-B042-4B07-8B8F-1CB57176CBAB}|Services\\Services.csproj|solutionrelative:services\\services\\iotdeviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48DF51A3-8D6E-459E-B886-ECDD60793CAA}|Data\\Data.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\data\\repositories\\iotdevicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48DF51A3-8D6E-459E-B886-ECDD60793CAA}|Data\\Data.csproj|solutionrelative:data\\repositories\\iotdevicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E186D30-BD2C-4104-A258-6E25E02F1673}|Domain\\Domain.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\domain\\models\\warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E186D30-BD2C-4104-A258-6E25E02F1673}|Domain\\Domain.csproj|solutionrelative:domain\\models\\warehouse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\google-drive-key.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\google-drive-key.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|c:\\users\\sergio\\documents\\5-semestr\\atark\\project\\warehousemanaging\\api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7197F2DC-B859-4108-A453-0EE24D1CC5C7}|API\\API.csproj|solutionrelative:api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserTelemetryController.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Controllers\\UserTelemetryController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\UserTelemetryController.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Controllers\\UserTelemetryController.cs",
+              "RelativeToolTip": "API\\Controllers\\UserTelemetryController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAwDgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T10:04:41.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DeviceTelemetry.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Domain\\Models\\DeviceTelemetry.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\DeviceTelemetry.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Domain\\Models\\DeviceTelemetry.cs",
+              "RelativeToolTip": "Domain\\Models\\DeviceTelemetry.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T10:03:00.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Warehouse.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Domain\\Models\\Warehouse.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\Warehouse.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Domain\\Models\\Warehouse.cs",
+              "RelativeToolTip": "Domain\\Models\\Warehouse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T10:02:42.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WarehouseDevice.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Domain\\Models\\WarehouseDevice.cs",
+              "RelativeDocumentMoniker": "Domain\\Models\\WarehouseDevice.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Domain\\Models\\WarehouseDevice.cs",
+              "RelativeToolTip": "Domain\\Models\\WarehouseDevice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T10:02:23.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IotDeviceRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Data\\Repositories\\IotDeviceRepository.cs",
+              "RelativeDocumentMoniker": "Data\\Repositories\\IotDeviceRepository.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Data\\Repositories\\IotDeviceRepository.cs",
+              "RelativeToolTip": "Data\\Repositories\\IotDeviceRepository.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAmwDkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T14:32:52.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IotDeviceService.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Services\\Services\\IotDeviceService.cs",
+              "RelativeDocumentMoniker": "Services\\Services\\IotDeviceService.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\Services\\Services\\IotDeviceService.cs",
+              "RelativeToolTip": "Services\\Services\\IotDeviceService.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAuwEkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T14:32:35.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IoTDeviceController.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Controllers\\IoTDeviceController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\IoTDeviceController.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Controllers\\IoTDeviceController.cs",
+              "RelativeToolTip": "API\\Controllers\\IoTDeviceController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAYwCAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-09T14:32:16.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "API\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwB8AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-09T14:20:05.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "API.csproj",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\API.csproj",
+              "RelativeDocumentMoniker": "API\\API.csproj",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\API.csproj",
+              "RelativeToolTip": "API\\API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-26T16:35:35.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "google-drive-key.json",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\google-drive-key.json",
+              "RelativeDocumentMoniker": "API\\google-drive-key.json",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\google-drive-key.json",
+              "RelativeToolTip": "API\\google-drive-key.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-26T16:35:32.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "API\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\appsettings.Development.json",
+              "RelativeToolTip": "API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-26T16:29:50.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-26T16:29:35.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "C:\\Users\\Sergio\\Documents\\5-semestr\\ATARK\\Project\\WarehouseManaging\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T16:29:11.644Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
