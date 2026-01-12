@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "author": "Warehouse IoT",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -67.2, "left": 129.64, "attrs": {} },
+    { "type": "wokwi-pushbutton", "id": "btn1", "top": 111.8, "left": 297.6, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledGreen", "top": 198, "left": 119, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "ledRed", "top": -80.4, "left": 291.8, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "ledYellow", "top": -42, "left": 349.4, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -9.3, "left": 13.8, "attrs": {} }
+  ],
+  "connections": [
+    ["esp:2", "ledGreen:A", "green", ["h0"]],
+    ["ledGreen:C", "esp:GND.1", "black", ["v0"]],
+    
+    ["esp:16", "ledRed:A", "green", ["v0"]],
+    ["ledRed:C", "esp:GND.2", "black", ["h0"]],
+    ["esp:17", "ledYellow:A", "green", ["v0"]],
+    ["ledYellow:C", "esp:GND.3", "black", ["h0"]],
+    
+    ["esp:4", "btn1:1.l", "green", ["h0"]],
+    ["btn1:2.l", "esp:GND.4", "black", ["v0"]],
+    
+    ["esp:15", "dht1:OUT", "green", ["v0"]], 
+    ["esp:3V3", "dht1:VCC", "red", ["h0"]],
+    ["esp:GND.5", "dht1:GND", "black", ["h0"]]
+  ]
+}
